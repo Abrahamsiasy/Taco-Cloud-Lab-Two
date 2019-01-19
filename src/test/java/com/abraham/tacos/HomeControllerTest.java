@@ -14,23 +14,22 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(HomeController.class)   
+@WebMvcTest   // <1>
 public class HomeControllerTest {
 
   @Autowired
-  private MockMvc mockMvc;  
+  private MockMvc mockMvc;   // <2>
 
   @Test
   public void testHomePage() throws Exception {
-    mockMvc.perform(get("/"))    
+    mockMvc.perform(get("/"))    // <3>
     
-      .andExpect(status().isOk()) 
+      .andExpect(status().isOk())  // <4>
       
-      .andExpect(view().name("home"))  
+      .andExpect(view().name("home"))  // <5>
       
-      .andExpect(content().string(           
+      .andExpect(content().string(           // <6>
           containsString("Welcome to...")));  
   }
 
 }
-
